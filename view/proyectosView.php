@@ -1,40 +1,43 @@
 <?php
+require_once 'Model/proyectModel.php';
 
-function allProyects($id){
-    require_once 'templates/db.php';
-    $query = $pdo->prepare("SELECT * FROM proyecto WHERE id_usuario = ?");
-    $query->execute(array($id));
-    return $query->fetchAll(PDO::FETCH_OBJ);
+function new_proyect(){
+    require_once 'templates/header.php';
+    require_once 'templates/new_proyect.php';
+    require_once 'templates/footer.php';
 }
 
 function showProyects(){
     require_once 'templates/header.php';
     require_once 'templates/proyectos.php';
     $id = $_SESSION['id_usuario'];
-    $result = allProyects($id);
+    $id_rol = $_SESSION['rol'];
+    if($id_rol == 1){
+        $result = allProyectsAdmin();
+    }else{
+        $result = allProyectsByID($id);
+    }
+    
     ?>
-    <table border="1">
-    <tr>
-        <th>Nombre del Proyecto</th>
-        <th>Descripcion</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
-    </tr>
+    
     <?php
+    if(!empty($result)){
     foreach ($result as $obj): ?>
         <tr>
             <td><?php echo $obj->nombre_proyecto; ?></td>
             <td><?php echo $obj->descripcion; ?></td>
             <td><?php echo "<form method='POST' action='edit_proyect'>";
                       echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
-                      echo "<input type='submit' value='Editar'>";
+                      echo "<input type='submit' class='btn btn-outline-success' value='Editar'>";
                       echo "</form>"?></td>
             <td><?php echo "<form method='POST' action='delete_proyect'>";
                       echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
-                      echo "<input type='submit' value='Eliminar'>";
+                      echo "<input type='submit' class='btn btn-sm btn-outline-secondary' value='Eliminar'>";
                       echo "</form>"?></td>
         </tr>
-    <?php endforeach; ?>
+    <?php endforeach;}else{
+        echo "<p>Todavía no tiene proyectos.</p>";
+    } ?>
     </table>
     <?php require_once 'templates/footer.php';
 }

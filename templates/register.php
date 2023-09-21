@@ -16,7 +16,7 @@
         <label for="password">Password:</label>
         <input type="password" name="password" placeholder="Password" required>
     </div>
-    <button type="submit">Registrarse</button>
+    <button class="btn btn-primary" type="submit">Registrarse</button>
 </form>
 
 <p>¿Tienes una cuenta? <a href="login">Inicia Sesión</a></p>

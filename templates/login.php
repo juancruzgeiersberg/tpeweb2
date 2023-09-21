@@ -9,6 +9,6 @@
         <label for="contraseña">Password: </label>
         <input type="password" name="password" placeholder="Password" required>
     </div>
-    <button type="submit">Iniciar Sesión</button>
+    <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
 </form>
 <p>¿No tienes una cuenta? <a href="register">Regístrate</a></p>

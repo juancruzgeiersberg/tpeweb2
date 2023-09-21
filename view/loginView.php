@@ -26,6 +26,7 @@ function authUser(){
         if (!empty($userBD) && password_verify($password, ($userBD->contraseña))){
             session_start();
             $_SESSION['id_usuario'] = $userBD->id_usuario;
+            $_SESSION['nombre'] = $userBD->nombre;
             $_SESSION['rol'] = $userBD->id_rol;
             header("Location: home");
         }
