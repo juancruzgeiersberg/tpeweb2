@@ -3,6 +3,7 @@
     <tr>
         <th>Nombre del Proyecto</th>
         <th>Descripcion</th>
+        <th>Agregar Participante</th>
         <th>Editar</th>
         <th>Eliminar</th>
     </tr>

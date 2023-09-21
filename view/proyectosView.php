@@ -14,7 +14,7 @@ function edit_proyect(){
     $edit = editByID($id,$pdo);
     ?>
     <form class="container form-control" action="save_edit" method="POST">
-        <input type="hidden" name = "id_proyecto" value="<?php echo $edit->id_proyecto ?>">
+        <input type="hidden" name="id_proyecto" value="<?php echo $edit->id_proyecto ?>">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
             <input type="text" class="form-control" name="edit_name_proyect" value="<?php echo $edit->nombre_proyecto ?>">
@@ -53,11 +53,15 @@ function showProyects(){
             <td><?php echo $obj->descripcion; ?></td>
             <td><?php echo "<form method='POST' action='edit_proyect'>";
                       echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
+                      echo "<input type='submit' class='btn btn-outline-primary' value='Agregar'>";
+                      echo "</form>"?></td>
+            <td><?php echo "<form method='POST' action='edit_proyect'>";
+                      echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
                       echo "<input type='submit' class='btn btn-outline-success' value='Editar'>";
                       echo "</form>"?></td>
             <td><?php echo "<form method='POST' action='delete_proyect'>";
                       echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
-                      echo "<input type='submit' class='btn btn-sm btn-outline-secondary' value='Eliminar'>";
+                      echo "<input type='submit' class='btn btn-outline-danger' value='Eliminar'>";
                       echo "</form>"?></td>
         </tr>
     <?php endforeach;}else{
