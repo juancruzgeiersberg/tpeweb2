@@ -8,10 +8,10 @@ function deleteProyect(){
     header("Location:". BASE_URL . "proyectos");
 }
 //no tiene nada todavía, ya se subirá el borrador.
-function editProyect(){
-    require 'templates/db.php';
+// function editProyect(){
+//     require 'templates/db.php';
     
-}
+// }
 
 
 function deleteOrEdit($query, $sql, $pdo){

@@ -41,9 +41,9 @@ switch ($params[0]){
     case 'proyectos':
         showProyects();
         break;
-    case 'delete_proyect';
-        editProyect();
-        break;
+    // case 'delete_proyect';
+    //     editProyect();
+    //     break;
     case 'delete_proyect';
         deleteProyect();
         break;
