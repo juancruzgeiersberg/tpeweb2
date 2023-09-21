@@ -1,5 +1,5 @@
-<h1>Acá va el formato de la página proyectos</h1>
-<table class="table table-striped table-hover">
+<h1 class="container">Acá va el formato de la página proyectos</h1>
+<table class="container table table-striped table-hover">
     <tr>
         <th>Nombre del Proyecto</th>
         <th>Descripcion</th>

@@ -4,7 +4,7 @@ function home(){
     require "templates/header.php";
     ?>
 
-    <h1>Acá iría el HOME</h1>
+    <h1 class="container">Acá iría el HOME</h1>
     
     
     <?php

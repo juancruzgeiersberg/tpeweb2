@@ -1,4 +1,4 @@
-<form action="add_proyect" method="POST">
+<form class="container form-control" action="add_proyect" method="POST">
     <div class="mb-3">
         <label for="name_proyect" class="form-label">Nombre del Proyecto:</label>
         <input type="text" class="form-control" name="name_proyect" placeholder="Nombre del Proyecto">

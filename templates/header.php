@@ -9,23 +9,22 @@
     <title>Document</title>
 </head>
 <body>
-<header>
-    <ul class="nav nav-pills">
+<header class="container">
+    <ul class="container nav nav-pills">
             <?php
             session_start();
             if(!empty($_SESSION['id_usuario'])){
-                echo 'Estás Conectado como:'. $_SESSION['nombre'];
                 echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyectos">Proyectos</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="new_proyect">Nuevo Proyecto</a></li>';
-                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="disconect"><span class="badge bg-danger">Disconect</span></a></li>';
+                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="disconect"><span class="badge bg-danger">Usuario:' . $_SESSION['nombre'] . ' Disconect</span></a></li>';
             }else{
                 echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="login">Login</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="register">Register</a></li>';
             }
             ?>
-        
+        <span></span>
     </ul>
 </header>
     
