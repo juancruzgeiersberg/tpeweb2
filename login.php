@@ -1,5 +1,6 @@
 <?php
 /*  conectamos */
+function login(){
 include('coneccion.php');
 
 /* var */
@@ -35,24 +36,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 $mensaje = "No existe.";
+                header("Location: templates/home.php");
+                exit;
             }
         } else {
             $mensaje = "No existe.";
+
         }
         $query->close();/* cierrqa pedido */
     }
 }
+}
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
     <h1>Iniciar Sesión</h1>
-    <form method="post" action="">
+    <form method="post" action="login">
         <div class="form-group">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" value="<?php echo $usuario; ?>" required>
@@ -66,7 +64,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <p>¿No tienes una cuenta? <a href="registro.php">Regístrate</a></p>
 
     <p><?php echo $mensaje; ?></p>
-</body>
-</html>
-
-falta configurar una salida luego del incio de sesion y la colocacion del automaticoen referencia a usaurios

@@ -1,6 +1,6 @@
 <?php
     $host = 'localhost';
-    $dbname = 'gestion';
+    $dbname = 'gestiondedatos';
     $dbtabla = 'user';
     $username = 'root';
     $password = '';

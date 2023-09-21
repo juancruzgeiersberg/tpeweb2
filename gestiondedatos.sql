@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2023 a las 00:28:52
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 21-09-2023 a las 09:55:43
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,21 @@ CREATE TABLE `proyecto` (
   `nombre_proyecto` varchar(255) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+INSERT INTO `proyecto` (`id_proyecto`, `nombre_proyecto`, `descripcion`, `id_usuario`) VALUES
+(2, 'TPE Web 2', 'Terminar la parte final del tpe', 366),
+(3, 'TPE Prog 2', 'Terminar la parte final del tpe', 366),
+(4, 'TPE TIO', 'Terminar la parte final del tpe', 366),
+(5, 'TPE Ingles', 'Terminar la parte final del tpe', 366),
+(6, 'Página Web', 'Crear una página web de deportes', 367),
+(7, 'eSports', 'Crear una página web de eSports', 367),
+(8, 'Cocina', 'Preparar la comida', 367),
+(9, 'Clima', 'Página web del clima', 367);
 
 -- --------------------------------------------------------
 
@@ -43,7 +57,7 @@ CREATE TABLE `proyecto` (
 CREATE TABLE `roles` (
   `id_rol` int(11) NOT NULL,
   `nombre_rol` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -64,7 +78,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(255) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
   `id_rol` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -72,7 +86,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `contraseña`, `id_rol`) VALUES
 (6, 'Miki', '$2y$10$HHYoZ/FyRmaVAk9bUpQwu.lJkSN7d4LPYXsAnSO9SFNVxfyDDwp3K', NULL),
-(7, 'mike', '$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e', NULL);
+(7, 'mike', '$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e', NULL),
+(366, 'juan', '$2y$10$JQ5xvbbP2XH375xY9e.rl.5VUbC.XZidZVR2wyXoPoH5HnwEMua4O', 2),
+(367, 'juanc', '$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu', 2);
 
 --
 -- Índices para tablas volcadas
@@ -106,7 +122,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `id_proyecto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -118,7 +134,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=368;
 
 --
 -- Restricciones para tablas volcadas

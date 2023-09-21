@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }}
 ?>
-    parte<!--  web -->
+    <!-- parte web -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,19 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Registro</h1>
-    <form method="post" action="">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
-        </div>
-        <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" required>
-        </div>
-        <button type="submit">Registrarse</button>
-    </form>
-    <p><?php echo $mensaje; ?></p>
-    <p>¿Tienes una cuenta? <a href="login.php">Inicia Sesión</a></p>
+
 </body>
 </html>
