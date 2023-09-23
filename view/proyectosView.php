@@ -33,13 +33,7 @@ function showProyects(){
     if(!empty($result)){
     foreach ($result as $obj): ?>
         <tr>
-        <?php
-            if ($id_rol == 1){
-                ?>
-                <td><?php echo $obj->creator_user; ?></td>
-                <?php
-            }
-        ?>
+            <td><?php echo $obj->creator_user; ?></td>
             <td><?php echo $obj->nombre_proyecto; ?></td>
             <td><?php echo $obj->descripcion; ?></td>
             <td><?php echo "<form method='POST' action='edit_proyect'>";
