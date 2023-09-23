@@ -12,23 +12,7 @@ function edit_proyect(){
     require_once 'templates/header.php';
     $id = [$_POST['id_proyecto']];
     $edit = editByID($id,$pdo);
-    ?>
-    <form class="container form-control" action="save_edit" method="POST">
-        <input type="hidden" name="id_proyecto" value="<?php echo $edit->id_proyecto ?>">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
-            <input type="text" class="form-control" name="edit_name_proyect" value="<?php echo $edit->nombre_proyecto ?>">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Descripción</label>
-            <textarea class="form-control" name="edit_description_proyect" rows="5"><?php echo $edit->descripcion ?></textarea>
-        </div>
-        <div class="mb-3">
-            <button class="btn btn-primary" type="submit">Edit</button>
-        </div>
-        
-    </form>
-    <?php
+    require_once 'templates/edit_proyect.php';
     require_once 'templates/footer.php';
 }
 
@@ -49,6 +33,13 @@ function showProyects(){
     if(!empty($result)){
     foreach ($result as $obj): ?>
         <tr>
+        <?php
+            if ($id_rol == 1){
+                ?>
+                <td><?php echo $obj->creator_user; ?></td>
+                <?php
+            }
+        ?>
             <td><?php echo $obj->nombre_proyecto; ?></td>
             <td><?php echo $obj->descripcion; ?></td>
             <td><?php echo "<form method='POST' action='edit_proyect'>";

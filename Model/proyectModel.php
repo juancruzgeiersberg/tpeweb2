@@ -47,7 +47,13 @@ function allProyectsByID($id){
 
 function allProyectsAdmin(){
     require_once 'templates/db.php';
-    $query = $pdo->prepare("SELECT * FROM proyecto");
+    $query = $pdo->prepare("SELECT 
+    proyecto.id_proyecto, 
+    proyecto.nombre_proyecto, 
+    proyecto.descripcion, 
+    usuario.nomre AS creator_user
+    FROM proyecto
+    INNER JOIN usuario ON proyecto.id_usuario = usuario.id_usuario");
     $query->execute();
     return $query->fetchAll(PDO::FETCH_OBJ);
 }

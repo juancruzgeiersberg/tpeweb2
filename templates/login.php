@@ -6,7 +6,7 @@
         <input class="form-control" type="text" name="user" placeholder="Username" required>
     </div>
     <div class="form-group mb-3">
-        <label for="contraseña">Password: </label>
+        <label for="contraseña" class="form-label">Password: </label>
         <input class="form-control" type="password" name="password" placeholder="Password" required>
     </div>
     <button class="btn btn-primary" type="submit">Iniciar Sesión</button>

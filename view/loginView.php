@@ -13,8 +13,7 @@ function verifyUser($user){
     require 'templates/db.php';
     $sentence = $pdo->prepare('SELECT * FROM usuario WHERE nombre = ?');
     $sentence->execute(array($user));
-    $userVerify = $sentence->fetch(PDO::FETCH_OBJ);
-    return $userVerify;
+    return $sentence->fetch(PDO::FETCH_OBJ);
 }
 
 function authUser(){
