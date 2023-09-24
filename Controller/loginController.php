@@ -13,6 +13,10 @@ class LoginController{
         $this->loginView = new LoginView();
     }
 
+    public function showLogin(){
+        $this->loginView->loginView();
+    }
+
 
     public function authUser(){
         if(!empty($_POST['user']) && !empty($_POST['password'])){
@@ -20,16 +24,15 @@ class LoginController{
             $password = $_POST['password'];
             $userBD = $this->userModel->verifyUser($user);
             if (!empty($userBD) && password_verify($password, ($userBD->contraseña))){
-                session_start();
                 $_SESSION['id_usuario'] = $userBD->id_usuario;
                 $_SESSION['nombre'] = $userBD->nombre;
                 $_SESSION['rol'] = $userBD->id_rol;
                 header("Location: home");
             }else{
-                $this->loginView->showLogin("User or Password Incorrect.");
+                $this->loginView->loginView("User or Password Incorrect.");
             }
         }else{
-            $this->loginView->showLogin("You must enter Username and Password.");
+            $this->loginView->loginView("You must enter Username and Password.");
         }
     }
 
@@ -38,7 +41,11 @@ class LoginController{
         header("Location:". BASE_URL . "login");
     }
 
-
+    public function newRegister(){
+        if(!empty($_POST['user']) && !empty($_POST['password'])){
+            $this->userModel->registerUser([$_POST['user'],password_hash($_POST['password'], PASSWORD_BCRYPT)],2);
+        }
+    }
 
 
 

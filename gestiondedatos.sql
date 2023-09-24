@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2023 a las 09:55:43
+-- Tiempo de generación: 24-09-2023 a las 18:26:52
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -39,14 +39,12 @@ CREATE TABLE `proyecto` (
 --
 
 INSERT INTO `proyecto` (`id_proyecto`, `nombre_proyecto`, `descripcion`, `id_usuario`) VALUES
-(2, 'TPE Web 2', 'Terminar la parte final del tpe', 366),
-(3, 'TPE Prog 2', 'Terminar la parte final del tpe', 366),
-(4, 'TPE TIO', 'Terminar la parte final del tpe', 366),
-(5, 'TPE Ingles', 'Terminar la parte final del tpe', 366),
-(6, 'Página Web', 'Crear una página web de deportes', 367),
-(7, 'eSports', 'Crear una página web de eSports', 367),
-(8, 'Cocina', 'Preparar la comida', 367),
-(9, 'Clima', 'Página web del clima', 367);
+(11, 'Proyecto TIO EDITADO', 'TPE de TIO EDITADO', 367),
+(14, 'Proyecto Prog 2', 'TPE Prog 2', 367),
+(15, 'Proyecto Web 2 EDITADOooo', 'TPE Web 2 EDITADO', 367),
+(23, 'Proyecto Inglés', 'TPE Inglés', 367),
+(28, 'Titulo...', 'Probando...', 366),
+(30, 'JuanCr First Proyect', 'Tra la la la la', 368);
 
 -- --------------------------------------------------------
 
@@ -77,7 +75,7 @@ CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
-  `id_rol` int(11) DEFAULT NULL,
+  `id_rol` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -88,7 +86,19 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `contraseña`, `id_rol`) VALUES
 (6, 'Miki', '$2y$10$HHYoZ/FyRmaVAk9bUpQwu.lJkSN7d4LPYXsAnSO9SFNVxfyDDwp3K', NULL),
 (7, 'mike', '$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e', NULL),
 (366, 'juan', '$2y$10$JQ5xvbbP2XH375xY9e.rl.5VUbC.XZidZVR2wyXoPoH5HnwEMua4O', 2),
-(367, 'juanc', '$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu', 2);
+(367, 'juanc', '$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu', 2),
+(368, 'juancr', '$2y$10$JDjMqyFomUOUWlidY07Q/O5LD12o2vhDjMN06AtuVHgPE6MDf1B.e', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_proyecto`
+--
+
+CREATE TABLE `usuario_proyecto` (
+  `id_usuario` int(11) NOT NULL,
+  `id_proyecto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -122,7 +132,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `id_proyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_proyecto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -134,7 +144,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=368;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=374;
 
 --
 -- Restricciones para tablas volcadas

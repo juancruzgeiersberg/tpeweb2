@@ -1,7 +1,6 @@
 <?php
 require_once './templates/home.php';
 require_once './view/loginView.php';
-require_once './view/registerView.php';
 require_once './view/proyectsView.php';
 require_once './Model/proyectModel.php';
 require_once './Model/UserModel.php';
@@ -25,7 +24,6 @@ $userModel = new UserModel();
 $loginController = new LoginController();
 $proyectController = new ProyectController();
 $loginView = new LoginView();
-$registerView = new RegisterView();
 $proyectView = new ProyectsView();
 session_start();
 switch ($params[0]){
@@ -33,21 +31,21 @@ switch ($params[0]){
         home();
         break;
     case 'login':
-        $loginView->showLogin();
+        $loginController->showLogin();
         break;
     case 'register':
-        $registerView->showRegister();
+        $loginView->registerView();
         break;
     case 'access':
         $loginController->authUser();
         break;
     case 'registerUser':
-        $userModel->registerUser();
+        
         break;
     case 'disconect':
         $loginController->disconect();
         break;
-    case 'proyectos':
+    case 'proyects':
         $proyectController->showProyects($_SESSION['id_usuario'], $_SESSION['rol']);
         break;
     case 'new_proyect';

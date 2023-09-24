@@ -14,7 +14,7 @@
             <?php
             if(!empty($_SESSION['id_usuario'])){
                 echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
-                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyectos">Proyectos</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyects">Proyectos</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="new_proyect">Nuevo Proyecto</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="disconect"><span class="badge bg-danger">Usuario:' . $_SESSION['nombre'] . ' Disconect</span></a></li>';
             }else{

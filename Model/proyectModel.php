@@ -15,7 +15,7 @@ class ProyectModel{
     public function deleteProyect(){
         $id_proyect = [$_POST['id_proyecto']];
         $this->sqlExecute("DELETE FROM `proyecto` WHERE id_proyecto = ?", $id_proyect);
-        header("Location:". BASE_URL . "proyectos");
+        header("Location:". BASE_URL . "proyects");
     }
 
     //Retorna el proyecto que el usuario quiere editar.
@@ -29,7 +29,7 @@ class ProyectModel{
     public function saveEdit(){
         $editProyect = [$_POST['edit_name_proyect'],$_POST['edit_description_proyect'],$_POST['id_proyecto']];
         $this->sqlExecute("UPDATE `proyecto` SET `nombre_proyecto`=?,`descripcion`=? WHERE id_proyecto = ?",$editProyect);
-        header("Location:" . BASE_URL . "proyectos");
+        header("Location:" . BASE_URL . "proyects");
     }
 
     //Agrega un nuevo proyecto
@@ -37,7 +37,7 @@ class ProyectModel{
         session_start();
         $add = [$_POST['name_proyect'],$_POST['description'],$_SESSION['id_usuario']];
         $this->sqlExecute("INSERT INTO `proyecto`(`nombre_proyecto`, `descripcion`, `id_usuario`) VALUES (?,?,?)",$add);
-        header("Location:" . BASE_URL . "proyectos");
+        header("Location:" . BASE_URL . "proyects");
     }
 
     //Conecta un usuario con un proyecto en la tabla usuario_proyecto

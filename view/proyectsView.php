@@ -24,7 +24,7 @@ class ProyectsView{
     
     public function getProyectsView($result){
         require_once 'templates/header.php';
-        require_once 'templates/proyectos.php';
+        require_once 'templates/proyects.php';
         ?>
         
         <?php

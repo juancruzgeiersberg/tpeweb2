@@ -1,7 +1,5 @@
 <?php
-
-
-
+//Clase del modelo de usuario
 class UserModel {
     //Variable privada
     private $pdo;
@@ -16,7 +14,7 @@ class UserModel {
         return $sentence->fetch(PDO::FETCH_OBJ);
     }
     //Si el usuario ingresado es correcto lo retorna
-    public function authUser($user, $password) {
+    public function authUser($user,$password) {
         $userBD = $this->verifyUser($user);
         if (!empty($userBD) && password_verify($password, $userBD->contraseña)) {
             return $userBD;
@@ -24,13 +22,10 @@ class UserModel {
         return false;
     }
     //Registra el usuario ingresado después de validarlo.
-    public function registerUser(){
-        $arr = [$_POST['user'],password_hash($_POST['password'], PASSWORD_BCRYPT)];
-        $rol = 2;
-    
+    public function registerUser($arr,$rol){
         if($this->verifyInsert($arr[0])){
             $this->saveUser($arr,$rol);
-            header("Location:". BASE_URL . "home");
+            header("Location:". BASE_URL . "proyects");
         }else{
             session_start();
             $_SESSION['error'] = "El usuario ingresado ya existe.";
