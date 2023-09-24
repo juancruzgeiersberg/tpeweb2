@@ -1,8 +1,7 @@
 <?php
 
 
-class proyectModel
-{
+class ProyectModel{
 
     private $pdo;
 
@@ -53,7 +52,7 @@ class proyectModel
     }
 
     //Devuelve todos los proyectos que tiene un usuario
-    public function allProyectsByID($id){
+    public function getProyectsByID($id){
         $query = $this->pdo->prepare("SELECT
         proyecto.id_proyecto,
         proyecto.nombre_proyecto,
@@ -67,7 +66,7 @@ class proyectModel
     }
 
     //Devuelve todos los proyectos que tiene la base de datos
-    public function allProyectsAdmin(){
+    public function getProyects(){
         $query = $this->pdo->prepare("SELECT
         proyecto.id_proyecto,
         proyecto.nombre_proyecto,

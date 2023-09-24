@@ -1,4 +1,4 @@
-<?php require_once './view/proyectosView.php'; ?>
+<?php require_once './view/proyectsView.php'; ?>
 <form class="container form-control" action="save_edit" method="POST">
         <input type="hidden" name="id_proyecto" value="<?php echo $edit->id_proyecto ?>">
         <div class="mb-3">

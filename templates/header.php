@@ -12,7 +12,6 @@
 <header class="container">
     <ul class="container nav nav-pills">
             <?php
-            session_start();
             if(!empty($_SESSION['id_usuario'])){
                 echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyectos">Proyectos</a></li>';

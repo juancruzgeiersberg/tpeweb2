@@ -1,12 +1,10 @@
 <?php
 
 function home(){
-    require "templates/header.php";
-    ?>
+    require "templates/header.php"; ?>
 
     <h1 class="container">Acá iría el HOME</h1>
     
     
-    <?php
-    require "templates/footer.php";
+    <?php require "templates/footer.php";
 }
