@@ -1,5 +1,8 @@
 <?php
-require_once 'Model/registerUser.php';
+require_once './Model/registerUser.php';
+require_once './Model/UserModel.php';
+
+
 
 function showLogin(){
     require_once 'templates/header.php';
@@ -9,19 +12,14 @@ function showLogin(){
     require_once 'templates/footer.php';
 }
 
-function verifyUser($user){
-    require 'templates/db.php';
-    $sentence = $pdo->prepare('SELECT * FROM usuario WHERE nombre = ?');
-    $sentence->execute(array($user));
-    return $sentence->fetch(PDO::FETCH_OBJ);
-}
+
 
 function authUser(){
     if(!empty($_POST['user']) && !empty($_POST['password'])){
         $user = $_POST['user'];
         $password = $_POST['password'];
-
-        $userBD = verifyUser($user);
+        $userModel = new UserModel();
+        $userBD = $userModel->verifyUser($user);
         if (!empty($userBD) && password_verify($password, ($userBD->contraseña))){
             session_start();
             $_SESSION['id_usuario'] = $userBD->id_usuario;
@@ -38,8 +36,9 @@ function authUser(){
 
 function disconect(){
     session_start();
-    unset($_SESSION['id_usuario']);
-    unset($_SESSION['rol']);
+    // unset($_SESSION['id_usuario']);
+    // unset($_SESSION['rol']);
+    session_destroy();
     header("Location:". BASE_URL . "login");
 }
 

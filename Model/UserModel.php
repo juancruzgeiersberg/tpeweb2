@@ -3,17 +3,17 @@
 
 require_once 'templates/db.php';
 
-class UsuerModel {
+class UserModel {
     private $pdo;
 
-    public function __construct($conexion) {
-        $this->pdo = $conexion;
+    public function __construct() {
+        $this->pdo = new PDO("mysql:host=localhost;dbname=gestiondedatos;charset=utf8", 'root', '');
     }
 
     public function verifyUser($user) {
-        $stmt = $this->pdo->prepare('SELECT * FROM usuario WHERE nombre = ?');
-        $stmt->execute([$user]);
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $sentence = $this->pdo->prepare('SELECT * FROM usuario WHERE nombre = ?');
+        $sentence->execute([$user]);
+        return $sentence->fetch(PDO::FETCH_OBJ);
     }
 
     public function authUser($user, $password) {

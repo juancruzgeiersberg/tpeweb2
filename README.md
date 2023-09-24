@@ -1,7 +1,16 @@
 # tpeweb2
-nombres de los integrantes del grupo
-Temática del TPE
-Breve descripción de la temática
-Diagrama de entidad relación (DER)
-El diagrama entidad relación (DER) del modelo de datos planteado (archivo jpeg o pdf)
-El código SQL que genera la base de datos (exportado desde phpMyAdmin)
+Integrantes:
+Nombre y apellido: Juan Cruz Geiersberg
+Email: juancruzgeiersberg@gmail.com
+
+Nombre y apellido: Maykel Stiven Tvihaug Alvarez
+Email:
+
+Grupo: N°: 108
+
+Tutor:
+Nombre y apellido: Nico l
+
+Temática: Aplicación de Gestión de proyectos.
+
+Descripción Temática: Crear una aplicación que gestiona los proyectos permitiendo crear, editar, eliminar un proyecto y agregar otros participantes al mismo, poder ver los proyectos que uno haya creado y en los que está participando.

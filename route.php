@@ -18,6 +18,8 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
+$proyectModel = new proyectModel();
+
 
 switch ($params[0]){
     case 'home':
@@ -45,15 +47,15 @@ switch ($params[0]){
         new_proyect();
         break;
      case 'add_proyect';
-        addProyect();
+        $proyectModel->addProyect();
         break;
     case 'edit_proyect';
         edit_proyect();
         break;
     case 'save_edit';
-        saveEdit();
+        $proyectModel->saveEdit();
         break;
     case 'delete_proyect';
-        deleteProyect();
+        $proyectModel->deleteProyect();
         break;
 }
