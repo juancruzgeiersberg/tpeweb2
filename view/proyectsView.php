@@ -1,14 +1,6 @@
 <?php
-require_once 'Model/proyectModel.php';
 
 class ProyectsView{
-
-    private $proyectModel;
-
-    public function __construct()
-    {
-        $this->proyectModel = new proyectModel();
-    }
 
     public function new_proyect(){
         require_once 'templates/header.php';
@@ -22,14 +14,14 @@ class ProyectsView{
         require_once 'templates/footer.php';
     }
     
-    public function getProyectsView($result){
+    public function getProyectsView($proyects){
         require_once 'templates/header.php';
         require_once 'templates/proyects.php';
         ?>
         
         <?php
-        if(!empty($result)){
-        foreach ($result as $obj): ?>
+        if(!empty($proyects)){
+        foreach ($proyects as $obj): ?>
             <tr>
                 <td><?php echo $obj->creator_user; ?></td>
                 <td><?php echo $obj->nombre_proyecto; ?></td>
