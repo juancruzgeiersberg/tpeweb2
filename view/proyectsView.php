@@ -10,13 +10,13 @@ class ProyectsView{
         require_once 'templates/footer.php';
     }
 
-    public function new_proyect(){
+    public function new_proyect($error=""){
         require_once 'templates/header.php';
         require_once 'templates/new_proyect.php';
         require_once 'templates/footer.php';
     }
     
-    public function edit_proyect($edit){
+    public function edit_proyect($edit,$error=""){
         require_once 'templates/header.php';
         require_once 'templates/edit_proyect.php';
         require_once 'templates/footer.php';

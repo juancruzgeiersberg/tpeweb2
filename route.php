@@ -23,6 +23,7 @@ $params = explode('/', $action);
 
 $proyectModel = new proyectModel();
 $userModel = new UserModel();
+$errorModel = new ErrorModel();
 $loginController = new LoginController();
 $proyectController = new ProyectController();
 $registerController = new RegisterController();
@@ -66,5 +67,8 @@ switch ($params[0]){
         break;
     case 'delete_proyect';
         $proyectController->deleteProyect($_POST['id_proyect']);
+        break;
+    default:
+        $errorModel->error404();
         break;
 }

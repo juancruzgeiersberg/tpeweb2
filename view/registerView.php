@@ -5,7 +5,7 @@
 
 class RegisterView{
 
-    public function showRegister(){
+    public function showRegister($error=""){
         require_once 'templates/header.php';
     
         require_once 'templates/register.php';

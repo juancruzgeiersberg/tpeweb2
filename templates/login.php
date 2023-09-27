@@ -11,7 +11,10 @@
         <input class="form-control" type="password" name="password" placeholder="Password" required>
     </div>
     <?php if(!empty($error)){
-        echo "<h4> $error </h4>";
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        <strong>$error</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+      </div>";
     } ?>
     <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
     <p>¿No tienes una cuenta? <a href="register">Regístrate</a></p>

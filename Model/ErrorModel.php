@@ -1,6 +1,10 @@
 <?php
 
 class ErrorModel{
+    
+    public function error404(){
+        return "Error 404 not found.";
+    }
 
     public function errorRegister(){
         return "You must complete all fields.";
@@ -16,5 +20,9 @@ class ErrorModel{
 
     public function errorUserExists(){
         return "User already exists";
+    }
+
+    public function errorProyect(){
+        return "You must enter a proyect name.";
     }
 }
