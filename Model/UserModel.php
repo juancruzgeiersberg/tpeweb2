@@ -15,43 +15,16 @@ class UserModel {
         $sentence->execute([$user]);
         return $sentence->fetch(PDO::FETCH_OBJ);
     }
-    //Si el usuario ingresado es correcto lo retorna
-    public function authUser($user, $password) {
-        $userBD = $this->verifyUser($user);
-        if (!empty($userBD) && password_verify($password, $userBD->contraseña)) {
-            return $userBD;
-        }
-        return false;
-    }
-    //Registra el usuario ingresado después de validarlo.
-    public function registerUser(){
-        $arr = [$_POST['user'],password_hash($_POST['password'], PASSWORD_BCRYPT)];
-        $rol = 2;
-    
-        if($this->verifyInsert($arr[0])){
-            $this->saveUser($arr,$rol);
-            header("Location:". BASE_URL . "home");
-        }else{
-            session_start();
-            $_SESSION['error'] = "El usuario ingresado ya existe.";
-            header("Location:". BASE_URL . "register");
-        }
-    }
     //Verifíca que el usuario no exista
     public function verifyInsert($user){
-        $checkQuery = "SELECT COUNT(*) FROM usuario WHERE nombre = ?";
-        $query = $this->pdo->prepare($checkQuery);
+        $query = $this->pdo->prepare("SELECT COUNT(*) FROM usuario WHERE nombre = ?");
         $query->execute(array($user));
-        if($query->fetchColumn() == 0){
-            return true;
-        }else{
-            return false;
-        }
+        return $query->fetchColumn();
     }
-    //Guarda el usuario en la base de datos
-    public function saveUser($arr, $rol){
+    //Guarda el nuevo usuario en la base de datos
+    public function saveUser($arr){
         $query = $this->pdo->prepare("INSERT INTO `usuario` (`nombre`, `contraseña`, `id_rol`) VALUES (?,?,?)");
-        $query->execute(array($arr[0],$arr[1],$rol));
+        $query->execute($arr);
     }
 
 }

@@ -7,6 +7,7 @@ require_once './Model/proyectModel.php';
 require_once './Model/UserModel.php';
 require_once './Controller/loginController.php';
 require_once './Controller/proyectsController.php';
+require_once './Controller/registerController.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -24,6 +25,7 @@ $proyectModel = new proyectModel();
 $userModel = new UserModel();
 $loginController = new LoginController();
 $proyectController = new ProyectController();
+$registerController = new RegisterController();
 $loginView = new LoginView();
 $registerView = new RegisterView();
 $proyectView = new ProyectsView();
@@ -33,16 +35,16 @@ switch ($params[0]){
         home();
         break;
     case 'login':
-        $loginView->showLogin();
+        $loginController->loginView();
         break;
     case 'register':
-        $registerView->showRegister();
+        $registerController->registerView();
         break;
     case 'access':
         $loginController->authUser();
         break;
     case 'registerUser':
-        $userModel->registerUser();
+        $registerController->newUser();
         break;
     case 'disconect':
         $loginController->disconect();
@@ -51,18 +53,18 @@ switch ($params[0]){
         $proyectController->showProyects($_SESSION['id_usuario'], $_SESSION['rol']);
         break;
     case 'new_proyect';
-        $proyectView->new_proyect();
+        $proyectController->newProyect();
         break;
      case 'add_proyect';
-        $proyectModel->addProyect();
+        $proyectController->insertProyect();
         break;
     case 'edit_proyect';
         $proyectController->editProyect();
         break;
     case 'save_edit';
-        $proyectModel->saveEdit();
+        $proyectController->saveEditProyect();
         break;
     case 'delete_proyect';
-        $proyectModel->deleteProyect();
+        $proyectController->deleteProyect($_POST['id_proyect']);
         break;
 }

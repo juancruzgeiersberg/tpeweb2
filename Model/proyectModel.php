@@ -12,10 +12,8 @@ class ProyectModel{
     }
 
     //Elimina un proyecto por id
-    public function deleteProyect(){
-        $id_proyect = [$_POST['id_proyecto']];
+    public function delete($id_proyect){
         $this->sqlExecute("DELETE FROM `proyecto` WHERE id_proyecto = ?", $id_proyect);
-        header("Location:". BASE_URL . "proyectos");
     }
 
     //Retorna el proyecto que el usuario quiere editar.
@@ -26,23 +24,24 @@ class ProyectModel{
     }
 
     //Guarda el proyecto editado por el usuario
-    public function saveEdit(){
-        $editProyect = [$_POST['edit_name_proyect'],$_POST['edit_description_proyect'],$_POST['id_proyecto']];
+    public function saveEdit($editProyect){
         $this->sqlExecute("UPDATE `proyecto` SET `nombre_proyecto`=?,`descripcion`=? WHERE id_proyecto = ?",$editProyect);
-        header("Location:" . BASE_URL . "proyectos");
     }
 
     //Agrega un nuevo proyecto
-    public function addProyect(){
-        session_start();
-        $add = [$_POST['name_proyect'],$_POST['description'],$_SESSION['id_usuario']];
-        $this->sqlExecute("INSERT INTO `proyecto`(`nombre_proyecto`, `descripcion`, `id_usuario`) VALUES (?,?,?)",$add);
-        header("Location:" . BASE_URL . "proyectos");
+    public function addProyect($query){
+        $this->sqlExecute("INSERT INTO `proyecto`(`nombre_proyecto`, `descripcion`, `id_usuario`) VALUES (?,?,?)",$query);
+    }
+
+    //Obtiene el id del ultimo proyecto agregado
+    public function lastInsertId(){
+        return $this->pdo->lastInsertId();
     }
 
     //Conecta un usuario con un proyecto en la tabla usuario_proyecto
-    public function linkProyect(){
-        
+    public function linkProyect($date){
+        $query = $this->pdo->prepare("INSERT INTO usuario_proyecto (id_usuario, id_proyecto) VALUES (?, ?)");
+        $query->execute($date);
     }
 
     //Hace las ejecuciones sql
@@ -59,10 +58,12 @@ class ProyectModel{
         proyecto.descripcion,
         usuario.nombre AS creator_user
         FROM proyecto 
-        INNER JOIN usuario ON proyecto.id_usuario = usuario.id_usuario
+        INNER JOIN usuario 
+        ON proyecto.id_usuario = usuario.id_usuario
         WHERE proyecto.id_usuario = ?");
         $query->execute(array($id));
         return $query->fetchAll(PDO::FETCH_OBJ);
+        
     }
 
     //Devuelve todos los proyectos que tiene la base de datos

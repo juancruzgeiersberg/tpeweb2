@@ -1,13 +1,13 @@
 <?php
-require_once 'Model/proyectModel.php';
 
 class ProyectsView{
 
-    private $proyectModel;
-
-    public function __construct()
-    {
-        $this->proyectModel = new proyectModel();
+    public function redirectHome($error=""){
+        require_once 'templates/header.php';
+    
+        require_once 'templates/login.php';
+    
+        require_once 'templates/footer.php';
     }
 
     public function new_proyect(){
