@@ -11,16 +11,16 @@ require_once './Controller/registerController.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
-// lee la acción
+//Reconoce el action que envía el usuario
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 } else {
-    // Acción por defecto si no envían
+    // Acción por defecto si el usuario no envió nada
     $action = 'home';
 }
 
 $params = explode('/', $action);
-
+//Instanciando las variables que se utilizan
 $proyectModel = new proyectModel();
 $userModel = new UserModel();
 $errorModel = new ErrorModel();
@@ -31,6 +31,7 @@ $loginView = new LoginView();
 $registerView = new RegisterView();
 $proyectView = new ProyectsView();
 session_start();
+//Ejecuta el action dependiendo su valor
 switch ($params[0]){
     case 'home':
         home();

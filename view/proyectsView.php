@@ -1,7 +1,7 @@
 <?php
 
 class ProyectsView{
-
+    //Vista del inicio de la pagina "home"
     public function redirectHome($error=""){
         require_once 'templates/header.php';
     
@@ -9,26 +9,25 @@ class ProyectsView{
     
         require_once 'templates/footer.php';
     }
-
+    //Vista de vinculacion de un usuario a un proyecto
     public function addUserView($id_proyect,$error=""){
         require_once 'templates/header.php';
         require_once './templates/link_user.php';
         require_once 'templates/footer.php';
     }
-
+    //Vista para crear un nuevo proyecto
     public function new_proyect($error=""){
         require_once 'templates/header.php';
         require_once 'templates/new_proyect.php';
         require_once 'templates/footer.php';
     }
-    
+    //Vista para editar un proyecto
     public function edit_proyect($edit,$error=""){
         require_once 'templates/header.php';
         require_once 'templates/edit_proyect.php';
         require_once 'templates/footer.php';
     }
-
-    
+    //Vista de todos los proyectos de un usuario
     public function getProyectsView($result){
         require_once 'templates/header.php';
         require_once 'templates/proyects.php';

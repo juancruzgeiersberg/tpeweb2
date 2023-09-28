@@ -27,7 +27,7 @@ class RegisterController{
             $this->registerView->showRegister($this->errorModel->errorRegister());
         }
     }
-
+    //Muestra la vista del register
     public function registerView(){
         $this->registerView->showRegister();
     }

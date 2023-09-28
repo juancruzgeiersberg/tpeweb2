@@ -2,7 +2,7 @@
 
 class LoginView{
 
-
+    //Vista del login
     public function showLogin($error = ""){
         require_once 'templates/header.php';
     

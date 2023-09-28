@@ -26,7 +26,7 @@ class UserModel {
         $query = $this->pdo->prepare("INSERT INTO `usuario` (`nombre`, `contraseña`, `id_rol`) VALUES (?,?,?)");
         $query->execute($arr);
     }
-
+    //Dado un id devuelve el nombre del usuario
     public function getUserID($user){
         $query = $this->pdo->prepare("SELECT * FROM usuario WHERE nombre = ?");
         $query->execute([$user]);
