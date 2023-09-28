@@ -25,4 +25,12 @@ class ErrorModel{
     public function errorProyect(){
         return "You must enter a proyect name.";
     }
+
+    public function errorUserNotExists(){
+        return "Username does not exist.";
+    }
+
+    public function errorLink(){
+        return "User already linked.";
+    }
 }

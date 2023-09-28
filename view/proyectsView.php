@@ -10,6 +10,12 @@ class ProyectsView{
         require_once 'templates/footer.php';
     }
 
+    public function addUserView($id_proyect,$error=""){
+        require_once 'templates/header.php';
+        require_once './templates/link_user.php';
+        require_once 'templates/footer.php';
+    }
+
     public function new_proyect($error=""){
         require_once 'templates/header.php';
         require_once 'templates/new_proyect.php';
@@ -21,10 +27,11 @@ class ProyectsView{
         require_once 'templates/edit_proyect.php';
         require_once 'templates/footer.php';
     }
+
     
     public function getProyectsView($result){
         require_once 'templates/header.php';
-        require_once 'templates/proyectos.php';
+        require_once 'templates/proyects.php';
         ?>
         
         <?php
@@ -34,8 +41,8 @@ class ProyectsView{
                 <td><?php echo $obj->creator_user; ?></td>
                 <td><?php echo $obj->nombre_proyecto; ?></td>
                 <td><?php echo $obj->descripcion; ?></td>
-                <td><?php echo "<form method='POST' action='edit_proyect'>";
-                          echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
+                <td><?php echo "<form method='POST' action='add_user'>";
+                          echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
                           echo "<input type='submit' class='btn btn-outline-primary' value='Agregar'>";
                           echo "</form>"?></td>
                 <td><?php echo "<form method='POST' action='edit_proyect'>";

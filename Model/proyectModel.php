@@ -43,6 +43,12 @@ class ProyectModel{
         $query = $this->pdo->prepare("INSERT INTO usuario_proyecto (id_usuario, id_proyecto) VALUES (?, ?)");
         $query->execute($date);
     }
+    //Verifica si el usuario está o no vinculado al proyecto
+    public function verifyLink($sql){
+        $query = $this->pdo->prepare("SELECT COUNT(*) FROM usuario_proyecto WHERE id_usuario = ? and id_proyecto = ?");
+        $query->execute($sql);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
     //Hace las ejecuciones sql
     public function sqlExecute($query, $sql){

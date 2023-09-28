@@ -27,4 +27,10 @@ class UserModel {
         $query->execute($arr);
     }
 
+    public function getUserID($user){
+        $query = $this->pdo->prepare("SELECT * FROM usuario WHERE nombre = ?");
+        $query->execute([$user]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
 }

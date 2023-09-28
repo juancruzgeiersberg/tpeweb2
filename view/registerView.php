@@ -12,6 +12,7 @@ class RegisterView{
     
         require_once 'templates/footer.php';
     }
+
 }
 
 
