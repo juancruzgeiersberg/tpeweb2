@@ -12,13 +12,15 @@
 <header class="container">
     <ul class="container nav nav-pills">
             <?php
+                echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
+                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="allproyects">Todos los Proyectos</a></li>';
             if(!empty($_SESSION['id_usuario'])){
-                echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
-                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyects">Proyectos</a></li>';
+                if($_SESSION['rol'] == 2){
+                    echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="proyects">Proyectos propios</a></li>';
+                }
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="new_proyect">Nuevo Proyecto</a></li>';
-                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="disconect"><span class="badge bg-danger">Usuario:' . $_SESSION['nombre'] . ' Disconect</span></a></li>';
+                echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="disconect"><span class="badge bg-danger">Usuario:' . $_SESSION['user'] . ' Disconect</span></a></li>';
             }else{
-                echo '<li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="login">Login</a></li>';
                 echo '<li class="nav-item"><a class="nav-link" aria-current="page" href="register">Register</a></li>';
             }

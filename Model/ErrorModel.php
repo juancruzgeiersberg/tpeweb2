@@ -29,8 +29,12 @@ class ErrorModel{
     public function errorUserNotExists(){
         return "Username does not exist.";
     }
-    //error que el usuario ya esta vinculado con el proyecto
+    //error que el usuario ya está vinculado con el proyecto
     public function errorLink(){
         return "User already linked.";
+    }
+    //error que el usuario no está vinculado con el proyecto
+    public function errorUnlink(){
+        return "User not linked.";
     }
 }

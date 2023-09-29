@@ -30,7 +30,13 @@ class UserModel {
     public function getUserID($user){
         $query = $this->pdo->prepare("SELECT * FROM usuario WHERE nombre = ?");
         $query->execute([$user]);
-        return $query->fetch(PDO::FETCH_OBJ);
+        return $query->fetch(PDO::FETCH_OBJ)->id_usuario;
+    }
+    //Retorna el id_rol del usuario
+    public function getRolID($id_user){
+        $query = $this->pdo->prepare("SELECT nombre_rol FROM roles WHERE id_rol = ?");
+        $query->execute([$id_user]);
+        return $query->fetch(PDO::FETCH_OBJ)->nombre_rol;
     }
 
 }

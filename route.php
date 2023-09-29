@@ -51,6 +51,9 @@ switch ($params[0]){
     case 'disconect':
         $loginController->disconect();
         break;
+    case 'allproyects';
+        $proyectController->showAllProyects();
+        break;
     case 'proyects':
         $proyectController->showProyects($_SESSION['id_usuario'], $_SESSION['rol']);
         break;
@@ -73,7 +76,13 @@ switch ($params[0]){
         $proyectController->addUserToProyect($_POST['id_proyect']);
         break;
     case 'link_user';
-        $proyectController->linkUserProyect($_POST['id_proyect']);
+        $proyectController->linkUserProyect($_POST['id_proyect'],$_POST['username']);
+        break;
+    case 'unlink_user';
+        $proyectController->unlinkUser($_POST['id_proyect']);
+        break;
+    case 'remove_user_proyect';
+        $proyectController->removeUser($_POST['username']);
         break;
     default:
         $errorModel->error404();

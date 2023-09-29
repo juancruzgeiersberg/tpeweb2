@@ -8,6 +8,10 @@
         <label for="password" class="form-label">Password:</label>
         <input class="form-control" type="password" name="password" placeholder="Password" required>
     </div>
+    <select class="form-select" aria-label="Default select example">
+        <option value="normal">Normal</option>
+        <option value="admin">Admin</option>
+    </select>
     <?php
         if (!empty($error)) {
             echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>

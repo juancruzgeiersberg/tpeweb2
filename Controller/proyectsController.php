@@ -18,13 +18,25 @@ class ProyectController{
         $this->proyectView = new ProyectsView();
     }
     //Muestra los proyectos
-    public function showProyects($id, $id_rol){
-        if($id_rol == 1){
-            //Si es Admin muestra todos los proyectos en la tabla
-            $this->proyectView->getProyectsView($this->proyectModel->getProyects());
+    public function showProyects($id="", $id_rol=""){
+            if($id_rol == 1){
+                //Si es Admin muestra todos los proyectos en la tabla
+                $this->proyectView->getProyectsView($this->proyectModel->getProyects(),$id_rol);
+            }else{
+                //Si es usuario normal muestra solo sus proyectos
+                $this->proyectView->getProyectsView($this->proyectModel->getProyectsByID($id),$id_rol);
+            }
+    }
+    //Muestra todos los proyectos creados por todos los usuarios
+    public function showAllProyects($id_rol=""){
+        if(!empty($id_rol)){
+            if($this->userModel->getRolID($id_rol) === 'admin'){
+                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects(),$id_rol);
+            }else{
+                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects());
+            }
         }else{
-            //Si es usuario normal muestra solo sus proyectos
-            $this->proyectView->getProyectsView($this->proyectModel->getProyectsByID($id));
+            $this->proyectView->getAllProyectsView($this->proyectModel->getProyects());
         }
     }
     //Muestra la vista para crear un proyecto
@@ -33,7 +45,7 @@ class ProyectController{
     }
     //Muestra la vista para editar un proyecto
     public function editProyect(){
-        $this->proyectView->edit_proyect($this->proyectModel->editByID([$_POST['id_proyecto']]),"");
+        $this->proyectView->edit_proyect($this->proyectModel->editByID([$_POST['id_proyect']]),"");
     }
     //Envia los datos al ProyectModel para editarlos
     public function saveEditProyect(){
@@ -54,26 +66,45 @@ class ProyectController{
             $this->proyectView->new_proyect($this->errorModel->errorProyect());
         }
     }
-    //Elimina un proyecto
+    //Envía a el modelo el proyecto a eliminar
     public function deleteProyect(){
         $this->proyectModel->delete([$_POST['id_proyecto']]);
         header("Location:". BASE_URL . "proyects");
     }
     //Muestra la vista para agregar un usuario al proyecto
     public function addUserToProyect($id_proyect){
-        $this->proyectView->addUserView($_POST['id_proyect']);
+        $this->proyectView->addUserView($id_proyect);
     }
     //verifica que exista el usuario y que no esté vinculado al proyecto y luego lo vincula
-    public function linkUserProyect($id_proyect){
-        if($this->userModel->verifyInsert($_POST['username']) != 0){
-            if(empty($this->proyectModel->verifyLink([$_POST['username'],$id_proyect]))){
-                $this->proyectModel->linkProyect([$this->userModel->getUserID($_POST['username'])->id_usuario,$id_proyect]);
+    public function linkUserProyect($id_proyect,$id_user){
+        if($this->userModel->verifyInsert($id_user) != 0){
+            if($this->proyectModel->verifyLink([$this->userModel->getUserID($id_user),$id_proyect]) == 0){
+                $this->proyectModel->linkProyect([$this->userModel->getUserID($id_user),$id_proyect]);
                 header("Location:" . BASE_URL . "proyects");
             }else{
                 $this->proyectView->addUserView($id_proyect,$this->errorModel->errorLink());
             }
         }else{
-            $this->proyectView->getProyectsView($this->errorModel->errorUserNotExists());
+            $this->proyectView->addUserView($id_proyect,$this->errorModel->errorUserNotExists());
+        }
+    }
+    //Muestra la vista para desvindular un usuario con un proyecto
+    public function unlinkUser($id_proyect){
+        $_SESSION['id_proyect'] = $id_proyect;
+        $this->proyectView->unlinkView();
+    }
+    //Verifica que haya ingresado un usuario y que el usuario esté vinculado con el proyecto.
+    public function removeUser($id_user){
+        $id_proyect = $_SESSION['id_proyect'];
+        if($this->userModel->verifyInsert($id_user) != 0){
+            if($this->proyectModel->verifyLink([$this->userModel->getUserID($id_user),$id_proyect]) != 0){
+                $this->proyectModel->unlinkProyect([$this->userModel->getUserID($id_user),$id_proyect]);
+                header("Location:" . BASE_URL . "proyects");
+            }else{
+                $this->proyectView->unlinkView($this->errorModel->errorUnlink());
+            }
+        }else{
+            $this->proyectView->unlinkView($this->errorModel->errorUserNotExists());
         }
     }
 

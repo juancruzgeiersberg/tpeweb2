@@ -5,12 +5,14 @@
         <th>Nombre del Proyecto</th>
         <th>Descripcion</th>
         <?php
-            if(!empty($_SESSION['user'])){
-        ?>
-                <th>Agregar Participante</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-        <?php
+        if(!empty($_SESSION['rol'])){
+                if($_SESSION['rol']==1){
+            ?>
+                    <th>Agregar Participante</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+            <?php
             }
+        }
         ?>
     </tr>
