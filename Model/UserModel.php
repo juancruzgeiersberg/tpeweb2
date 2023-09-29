@@ -38,5 +38,15 @@ class UserModel {
         $query->execute([$id_user]);
         return $query->fetch(PDO::FETCH_OBJ)->nombre_rol;
     }
+    //Retorna todos los usuarios vinculados a un proyecto
+    public function allMembers($sql){
+        $query = $this->pdo->prepare("SELECT usuario.nombre
+                  FROM usuario
+                  INNER JOIN usuario_proyecto 
+                  ON usuario.id_usuario = usuario_proyecto.id_usuario
+                  WHERE usuario_proyecto.id_proyecto = ?");
+        $query->execute([$sql]);
+        return  $query->fetchAll(PDO::FETCH_OBJ);
+    }
 
 }

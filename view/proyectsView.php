@@ -10,7 +10,7 @@ class ProyectsView{
         require_once 'templates/footer.php';
     }
     //Vista de vinculacion de un usuario a un proyecto
-    public function addUserView($id_proyect,$error=""){
+    public function addUserView($error=""){
         require_once 'templates/header.php';
         require_once './templates/link_user.php';
         require_once 'templates/footer.php';
@@ -47,6 +47,10 @@ class ProyectsView{
                     <td><?php echo $obj->creator_user; ?></td>
                     <td><?php echo $obj->nombre_proyecto; ?></td>
                     <td><?php echo $obj->descripcion; ?></td>
+                    <td><?php echo "<form method='POST' action='members'>";
+                                echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
+                                echo "<input type='submit' class='btn btn-outline-danger' value='Ver'>";
+                                echo "</form>"?></td>
                 <?php 
                     if(!empty($_SESSION['rol'])){ 
                         if($_SESSION['rol'] == 1){
@@ -93,24 +97,27 @@ class ProyectsView{
                     <td><?php echo $obj->creator_user; ?></td>
                     <td><?php echo $obj->nombre_proyecto; ?></td>
                     <td><?php echo $obj->descripcion; ?></td>
+                    <td><?php echo "<form method='POST' action='members'>";
+                            echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
+                            echo "<input type='submit' class='btn btn-outline-danger' value='Ver'>";
+                            echo "</form>"?></td>
                 <?php 
                     if(!empty($_SESSION['user'])){ 
                 ?>
                         <td><?php echo "<form method='POST' action='add_user'>";
+                                echo "<button type='submit' name='id_proyect' class='btn btn-outline-primary' value='$obj->id_proyecto'>Add</button>";
+                                echo "</form>";?></td>
+                        <td><?php echo "<form method='POST' action='unlink_user'>";
                                 echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
-                                echo "<input type='submit' class='btn btn-outline-primary' value='Agregar'>";
-                                echo "</form>";
-                                echo "<form method='POST' action='unlink_user'>";
-                                echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
-                                echo "<input type='submit' class='btn btn-outline-danger' value=' Quitar  '>";
+                                echo "<input type='submit' class='btn btn-outline-danger' value='Quitar'>";
                                 echo "</form>"?></td>
                         <td><?php echo "<form method='POST' action='edit_proyect'>";
                                 echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
-                                echo "<input type='submit' class='btn btn-outline-success' value='Editar'>";
+                                echo "<input type='submit' class='btn btn-outline-success' value='Edit'>";
                                 echo "</form>"?></td>
                         <td><?php echo "<form method='POST' action='delete_proyect'>";
                                 echo "<input type='hidden' name='id_proyecto' value='" . $obj->id_proyecto . "'>";
-                                echo "<input type='submit' class='btn btn-outline-danger' value='Eliminar'>";
+                                echo "<input type='submit' class='btn btn-outline-danger' value='Del'>";
                                 echo "</form>"?></td>
                 <?php   
                     } 
@@ -123,7 +130,26 @@ class ProyectsView{
         </table>
         <?php require_once 'templates/footer.php';
     }
+    //Vista de los miembros de un proyecto
+    public function seeMembers($result){
+        require_once 'templates/header.php';
+        require_once 'templates/all_members.php';
+        ?>
+        <?php
+            if(!empty($result)){
+            foreach ($result as $obj): ?>
+                <tr>
+                    <td><?php echo $obj->nombre; ?></td>
+                </tr>
+            <?php endforeach;}else{
+                echo "<p class='container'>Todavía no hay proyectos.</p>";
+            }
+         ?>
+        </table>
+        <?php require_once 'templates/footer.php';
+    }
 }
+
 
 
 ?>

@@ -73,10 +73,12 @@ class ProyectController{
     }
     //Muestra la vista para agregar un usuario al proyecto
     public function addUserToProyect($id_proyect){
-        $this->proyectView->addUserView($id_proyect);
+        $_SESSION['id_proyect'] = $id_proyect;
+        $this->proyectView->addUserView();
     }
     //verifica que exista el usuario y que no esté vinculado al proyecto y luego lo vincula
-    public function linkUserProyect($id_proyect,$id_user){
+    public function linkUserProyect($id_user){
+        $id_proyect = $_SESSION['id_proyect'];
         if($this->userModel->verifyInsert($id_user) != 0){
             if($this->proyectModel->verifyLink([$this->userModel->getUserID($id_user),$id_proyect]) == 0){
                 $this->proyectModel->linkProyect([$this->userModel->getUserID($id_user),$id_proyect]);
@@ -107,5 +109,13 @@ class ProyectController{
             $this->proyectView->unlinkView($this->errorModel->errorUserNotExists());
         }
     }
+    //Muestra la Vista de los miembros de un proyecto
+    public function allMembers($id_proyect){
+        $this->proyectView->seeMembers($this->userModel->allMembers($id_proyect));
+    }
+    //Muestra todos los usuarios de un proyecto
+    public function seeAllUser(){
+        $id_proyect = $_SESSION['id_proyect'];
 
+    }
 }

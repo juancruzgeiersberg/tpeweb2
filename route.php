@@ -76,13 +76,16 @@ switch ($params[0]){
         $proyectController->addUserToProyect($_POST['id_proyect']);
         break;
     case 'link_user';
-        $proyectController->linkUserProyect($_POST['id_proyect'],$_POST['username']);
+        $proyectController->linkUserProyect($_POST['username']);
         break;
     case 'unlink_user';
         $proyectController->unlinkUser($_POST['id_proyect']);
         break;
     case 'remove_user_proyect';
         $proyectController->removeUser($_POST['username']);
+        break;
+    case 'members';
+        $proyectController->allMembers($_POST['id_proyect']);
         break;
     default:
         $errorModel->error404();

@@ -4,6 +4,7 @@
         <th>Creador</th>
         <th>Nombre del Proyecto</th>
         <th>Descripcion</th>
+        <th>Ver Participantes</th>
         <?php
         if(!empty($_SESSION['rol'])){
                 if($_SESSION['rol']==1){
