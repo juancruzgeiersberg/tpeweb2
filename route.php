@@ -1,10 +1,5 @@
 <?php
-require_once './templates/home.php';
-require_once './view/loginView.php';
-require_once './view/registerView.php';
-require_once './view/proyectsView.php';
-require_once './Model/proyectModel.php';
-require_once './Model/UserModel.php';
+require_once './templates/home.phtml';
 require_once './Controller/loginController.php';
 require_once './Controller/proyectsController.php';
 require_once './Controller/registerController.php';
@@ -21,70 +16,80 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 //Instanciando las variables que se utilizan
-$proyectModel = new proyectModel();
-$userModel = new UserModel();
 $errorModel = new ErrorModel();
-$loginController = new LoginController();
-$proyectController = new ProyectController();
-$registerController = new RegisterController();
-$loginView = new LoginView();
-$registerView = new RegisterView();
-$proyectView = new ProyectsView();
 session_start();
 //Ejecuta el action dependiendo su valor
 switch ($params[0]){
     case 'home':
-        home();
+        $proyectController = new ProyectController();
+        $proyectController->showHome();
         break;
     case 'login':
+        $loginController = new LoginController();
         $loginController->loginView();
         break;
     case 'register':
+        $registerController = new RegisterController();
         $registerController->registerView();
         break;
     case 'access':
+        $loginController = new LoginController();
         $loginController->authUser();
         break;
     case 'registerUser':
+        $registerController = new RegisterController();
         $registerController->newUser();
         break;
     case 'disconect':
+        $loginController = new LoginController();
         $loginController->disconect();
         break;
     case 'allproyects';
+        $proyectController = new ProyectController();
         $proyectController->showAllProyects();
         break;
     case 'proyects':
+        $proyectController = new ProyectController();
         $proyectController->showProyects($_SESSION['id_usuario'], $_SESSION['rol']);
         break;
     case 'new_proyect';
+        $proyectController = new ProyectController();
         $proyectController->newProyect();
         break;
      case 'add_proyect';
+        $proyectController = new ProyectController();
         $proyectController->insertProyect();
         break;
     case 'edit_proyect';
+        $proyectController = new ProyectController();
         $proyectController->editProyect();
         break;
     case 'save_edit';
+        $proyectController = new ProyectController();
         $proyectController->saveEditProyect();
         break;
     case 'delete_proyect';
+        $proyectController = new ProyectController();
         $proyectController->deleteProyect($_POST['id_proyect']);
         break;
     case 'add_user';
+        $proyectController = new ProyectController();
         $proyectController->addUserToProyect($_POST['id_proyect']);
         break;
     case 'link_user';
+        $proyectController = new ProyectController();
         $proyectController->linkUserProyect($_POST['username']);
         break;
     case 'unlink_user';
+        $proyectController = new ProyectController();
         $proyectController->unlinkUser($_POST['id_proyect']);
         break;
     case 'remove_user_proyect';
+        $proyectController = new ProyectController();
         $proyectController->removeUser($_POST['username']);
         break;
     case 'members';
+        $proyectController = new ProyectController();
         $proyectController->allMembers($_POST['id_proyect']);
         break;
     default:

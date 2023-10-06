@@ -1,42 +1,45 @@
 <?php
 
 class ProyectsView{
+    public function home(){
+        require_once './templates/header.phtml';
+        require_once './templates/home.phtml';
+        require_once './templates/footer.phtml';
+    }
     //Vista del inicio de la pagina "home"
     public function redirectHome($error=""){
-        require_once 'templates/header.php';
-    
-        require_once 'templates/login.php';
-    
-        require_once 'templates/footer.php';
+        require_once './templates/header.phtml';
+        require_once './templates/login.phtml';
+        require_once './templates/footer.phtml';
     }
     //Vista de vinculacion de un usuario a un proyecto
     public function addUserView($error=""){
-        require_once 'templates/header.php';
-        require_once './templates/link_user.php';
-        require_once 'templates/footer.php';
+        require_once './templates/header.phtml';
+        require_once './templates/link_user.phtml';
+        require_once './templates/footer.phtml';
     }
     //Vista para crear un nuevo proyecto
     public function new_proyect($error=""){
-        require_once 'templates/header.php';
-        require_once 'templates/new_proyect.php';
-        require_once 'templates/footer.php';
+        require_once './templates/header.phtml';
+        require_once './templates/new_proyect.phtml';
+        require_once './templates/footer.phtml';
     }
     //Vista para editar un proyecto
     public function edit_proyect($edit,$error=""){
-        require_once 'templates/header.php';
-        require_once 'templates/edit_proyect.php';
-        require_once 'templates/footer.php';
+        require_once './templates/header.phtml';
+        require_once './templates/edit_proyect.phtml';
+        require_once './templates/footer.phtml';
     }
     //Vista para remover un usuario de un proyecto
     public function unlinkView($error=""){
-        require_once 'templates/header.php';
-        require_once 'templates/remove_user.php';
-        require_once 'templates/footer.php';
+        require_once './templates/header.phtml';
+        require_once './templates/remove_user.phtml';
+        require_once './templates/footer.phtml';
     }
     //Vista de todos los proyectos que existen
     public function getAllProyectsView($result){
-        require_once 'templates/header.php';
-        require_once 'templates/allproyects.php';
+        require_once './templates/header.phtml';
+        require_once './templates/allproyects.phtml';
         ?>
         
         <?php
@@ -81,12 +84,12 @@ class ProyectsView{
             }
          ?>
         </table>
-        <?php require_once 'templates/footer.php';
+        <?php require_once './templates/footer.phtml';
     }
     //Vista de todos los proyectos de un usuario
     public function getProyectsView($result,){
-        require_once 'templates/header.php';
-        require_once 'templates/proyects.php';
+        require_once './templates/header.phtml';
+        require_once './templates/proyects.phtml';
         ?>
         
         <?php
@@ -128,12 +131,12 @@ class ProyectsView{
             }
          ?>
         </table>
-        <?php require_once 'templates/footer.php';
+        <?php require_once './templates/footer.phtml';
     }
     //Vista de los miembros de un proyecto
     public function seeMembers($result){
-        require_once 'templates/header.php';
-        require_once 'templates/all_members.php';
+        require_once './templates/header.phtml';
+        require_once './templates/all_members.phtml';
         ?>
         <?php
             if(!empty($result)){
@@ -146,10 +149,8 @@ class ProyectsView{
             }
          ?>
         </table>
-        <?php require_once 'templates/footer.php';
+        <?php require_once './templates/footer.phtml';
     }
 }
-
-
 
 ?>

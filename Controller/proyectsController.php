@@ -2,6 +2,7 @@
 
 require_once './Model/proyectModel.php';
 require_once './view/proyectsView.php';
+require_once './helpers/auth.php';
 
 class ProyectController{
 
@@ -17,8 +18,13 @@ class ProyectController{
         $this->errorModel = new ErrorModel();
         $this->proyectView = new ProyectsView();
     }
+    //Muestra el Home
+    public function showHome(){
+        $this->proyectView->home();
+    }
     //Muestra los proyectos
     public function showProyects($id="", $id_rol=""){
+            AuthHelper::verify($_SESSION['id_usuario']);
             if($id_rol == 1){
                 //Si es Admin muestra todos los proyectos en la tabla
                 $this->proyectView->getProyectsView($this->proyectModel->getProyects(),$id_rol);
@@ -41,14 +47,17 @@ class ProyectController{
     }
     //Muestra la vista para crear un proyecto
     public function newProyect(){
+        AuthHelper::verify();
         $this->proyectView->new_proyect();
     }
     //Muestra la vista para editar un proyecto
     public function editProyect(){
+        AuthHelper::verify();
         $this->proyectView->edit_proyect($this->proyectModel->editByID([$_POST['id_proyect']]),"");
     }
     //Envia los datos al ProyectModel para editarlos
     public function saveEditProyect(){
+        AuthHelper::verify();
         if(!empty($_POST['edit_name_proyect'])){
             $this->proyectModel->saveEdit([$_POST['edit_name_proyect'],$_POST['edit_description_proyect'],$_POST['id_proyecto']]);
             header("Location:" . BASE_URL . "proyects");

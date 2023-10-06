@@ -6,11 +6,11 @@
 class RegisterView{
     //Vista del register
     public function showRegister($error=""){
-        require_once 'templates/header.php';
+        require_once 'templates/header.phtml';
     
-        require_once 'templates/register.php';
+        require_once 'templates/register.phtml';
     
-        require_once 'templates/footer.php';
+        require_once 'templates/footer.phtml';
     }
 
 }
