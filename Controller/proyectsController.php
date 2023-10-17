@@ -68,6 +68,7 @@ class ProyectController{
     //Inserta un proyecto nuevo y lo vincula con el usuario
     public function insertProyect(){
         if(!empty($_POST['name_proyect'])){
+            AuthHelper::init();
             $this->proyectModel->addProyect([$_POST['name_proyect'],$_POST['description'],$_SESSION['id_usuario']]);
             $this->proyectModel->linkProyect([$_SESSION['id_usuario'],$this->proyectModel->lastInsertId()]);
             header("Location:" . BASE_URL . "proyects");
@@ -82,21 +83,23 @@ class ProyectController{
     }
     //Muestra la vista para agregar un usuario al proyecto
     public function addUserToProyect($id_proyect){
+        AuthHelper::init();
         $_SESSION['id_proyect'] = $id_proyect;
         $this->proyectView->addUserView();
     }
     //verifica que exista el usuario y que no esté vinculado al proyecto y luego lo vincula
     public function linkUserProyect($id_user){
+        AuthHelper::init();
         $id_proyect = $_SESSION['id_proyect'];
         if($this->userModel->verifyInsert($id_user) != 0){
             if($this->proyectModel->verifyLink([$this->userModel->getUserID($id_user),$id_proyect]) == 0){
                 $this->proyectModel->linkProyect([$this->userModel->getUserID($id_user),$id_proyect]);
                 header("Location:" . BASE_URL . "proyects");
             }else{
-                $this->proyectView->addUserView($id_proyect,$this->errorModel->errorLink());
+                $this->proyectView->addUserView($this->errorModel->errorLink());
             }
         }else{
-            $this->proyectView->addUserView($id_proyect,$this->errorModel->errorUserNotExists());
+            $this->proyectView->addUserView($this->errorModel->errorUserNotExists());
         }
     }
     //Muestra la vista para desvindular un usuario con un proyecto
@@ -120,11 +123,14 @@ class ProyectController{
     }
     //Muestra la Vista de los miembros de un proyecto
     public function allMembers($id_proyect){
-        $this->proyectView->seeMembers($this->userModel->allMembers($id_proyect));
+        if($this->proyectModel->verifyProyectExistence($id_proyect) != 0){
+            $this->proyectView->seeMembers("",$this->userModel->allMembers($id_proyect),$this->proyectModel->editByID([$id_proyect]));
+        }else{
+            $this->proyectView->seeMembers($this->errorModel->error404(),"","");
+        }
     }
-    //Muestra todos los usuarios de un proyecto
-    public function seeAllUser(){
-        $id_proyect = $_SESSION['id_proyect'];
-
+    //Muestra error si no encuntra el action
+    public function errorNotFound(){
+        $this->errorModel->error404();
     }
 }

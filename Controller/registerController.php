@@ -16,9 +16,14 @@ class RegisterController{
     }
     //Verifica el usuario que se quiere registrar y luego envía los datos al modelo
     public function newUser(){
+        if($_POST['rol'] === 'admin'){
+            $rol = 1;
+        }else{
+            $rol = 2;
+        }
         if(!empty($_POST['user']) && !empty($_POST['password'])){
             if($this->registerModel->verifyUser($_POST['user']) == 0){
-                $this->registerModel->saveUser([$_POST['user'],password_hash($_POST['password'], PASSWORD_BCRYPT),2]);
+                $this->registerModel->saveUser([$_POST['user'],password_hash($_POST['password'], PASSWORD_BCRYPT),$rol]);
                 header("Location:". BASE_URL . "home");
             }else{
                 $this->registerView->showRegister($this->errorModel->errorUserExists());

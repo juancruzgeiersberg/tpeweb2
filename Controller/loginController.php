@@ -2,6 +2,7 @@
 require_once './Model/UserModel.php';
 require_once './view/loginView.php';
 require_once './Model/ErrorModel.php';
+require_once './helpers/auth.php';
 
 class LoginController{
 
@@ -23,7 +24,7 @@ class LoginController{
             $userBD = $this->userModel->verifyUser($user);
             //Verifica que el usuario exista y la contraseña sea correcta, de ser así crea una sesion
             if (!empty($userBD) && password_verify($password, ($userBD->contraseña))){
-                session_start();
+                AuthHelper::init();
                 $_SESSION['id_usuario'] = $userBD->id_usuario;
                 $_SESSION['user'] = $userBD->nombre;
                 $_SESSION['rol'] = $userBD->id_rol;
@@ -37,6 +38,7 @@ class LoginController{
     }
     //Termina la sesion del usuario
     public function disconect(){
+        AuthHelper::init();
         session_destroy();
         header("Location:". BASE_URL . "login");
     }

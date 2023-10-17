@@ -85,6 +85,12 @@ class ProyectModel{
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    //Devuelve 1 si existe el proyecto o 0 si no existe
+    public function verifyProyectExistence($id_proyect){
+        $query = $this->pdo->prepare("SELECT COUNT(*) FROM proyecto WHERE id_proyecto = ?");
+        $query->execute([$id_proyect]);
+        return $query->fetchColumn();
+    }
 }
 
 ?>

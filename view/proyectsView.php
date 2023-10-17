@@ -49,7 +49,6 @@ class ProyectsView{
                 <tr>
                     <td><?php echo $obj->creator_user; ?></td>
                     <td><?php echo $obj->nombre_proyecto; ?></td>
-                    <td><?php echo $obj->descripcion; ?></td>
                     <td><?php echo "<form method='POST' action='members'>";
                                 echo "<input type='hidden' name='id_proyect' value='" . $obj->id_proyecto . "'>";
                                 echo "<input type='submit' class='btn btn-outline-danger' value='Ver'>";
@@ -134,18 +133,32 @@ class ProyectsView{
         <?php require_once './templates/footer.phtml';
     }
     //Vista de los miembros de un proyecto
-    public function seeMembers($result){
+    public function seeMembers($error=null,$members=null,$proyect=null){
         require_once './templates/header.phtml';
-        require_once './templates/all_members.phtml';
         ?>
         <?php
-            if(!empty($result)){
-            foreach ($result as $obj): ?>
-                <tr>
-                    <td><?php echo $obj->nombre; ?></td>
-                </tr>
-            <?php endforeach;}else{
-                echo "<p class='container'>Todavía no hay proyectos.</p>";
+            if(!empty($proyect)){?>
+                <div class="card text-dark bg-light mb-3 mt-3" style="max-width: 18rem;">
+                    <div class="card-header">
+                        <h4 class="card-title"><?php echo $proyect->nombre_proyecto; ?></h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><?php echo $proyect->descripcion; ?></p>
+                    </div>
+                    <div class="card-footer"><?php echo "<h5>Participantes: </h5>";
+                        if(!empty($members)){
+                            foreach ($members as $obj):
+                                echo "<p>$obj->nombre</p>";
+                            endforeach;}else{
+                                echo "<p class='container'>Todavía no hay participantes.</p>";
+                            }
+                            ?>
+                    </div>
+                </div>
+            <?php }else{
+                if(!empty($error)){
+                    echo "<h4 class='mt-3 container alert alert-danger'>$error</h4>";
+                }
             }
          ?>
         </table>
