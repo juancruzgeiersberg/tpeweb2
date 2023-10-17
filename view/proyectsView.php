@@ -94,7 +94,7 @@ class ProyectsView{
                 ?>
                 </tr>
             <?php endforeach;}else{
-                echo "<p class='container'>Todavía no hay proyectos.</p>";
+                echo "<p class='container alert alert-danger'><strong>Todavía no hay proyectos.</strong></p>";
             }
          ?>
         </table>
