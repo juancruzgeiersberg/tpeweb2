@@ -11,20 +11,11 @@ class UserModel {
         $this->deploy();
     }
     public function deploy() {
-        // Estas variables no las puse porque a ultimo momento me dió problema que me tomaba
-        // los hash como variables y no me funcionaba el código y la solución que le dí fué
-        // crear las variables con el mismo valor para que no diera más problemas.
-        // Es una solución de ultimo momento.
-        $HHYoZ = '$HHYoZ';
-        $aAFfSiv971VAU5Hnm2IQg = '$aAFfSiv971VAU5Hnm2IQg';
-        $JQ5xvbbP2XH375xY9e = '$JQ5xvbbP2XH375xY9e';
-        $tND9QWdaeOoRTlVYoiHgb = '$tND9QWdaeOoRTlVYoiHgb';
-        $WT7i1CFPAxzrjnt2HrNofusXBv5jjrTYjaU6WFxEBZ2krRlI4bGVW = '$WT7i1CFPAxzrjnt2HrNofusXBv5jjrTYjaU6WFxEBZ2krRlI4bGVW';
-        $query = $this->pdo->query('SHOW TABLES');
+       $query = $this->pdo->query('SHOW TABLES');
         $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
         if(count($tables)==0) {
             // Si no hay crearlas
-            $sql ="
+            $sql ='
             --
             -- Estructura de tabla para la tabla `usuario`
             --
@@ -41,11 +32,11 @@ class UserModel {
             --
 
             INSERT INTO `usuario` (`id_usuario`, `nombre`, `contraseña`, `id_rol`) VALUES
-            (6, 'Miki', '$2y$10$HHYoZ/FyRmaVAk9bUpQwu.lJkSN7d4LPYXsAnSO9SFNVxfyDDwp3K', NULL),
-            (7, 'mike', '$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e', NULL),
-            (366, 'juan', '$2y$10$JQ5xvbbP2XH375xY9e.rl.5VUbC.XZidZVR2wyXoPoH5HnwEMua4O', 2),
-            (367, 'juanc', '$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu', 2);
-            (382, 'webadmin', '$2y$10$WT7i1CFPAxzrjnt2HrNofusXBv5jjrTYjaU6WFxEBZ2krRlI4bGVW', 1);
+            (6, "Miki", "$2y$10$HHYoZ/FyRmaVAk9bUpQwu.lJkSN7d4LPYXsAnSO9SFNVxfyDDwp3K", NULL),
+            (7, "mike", "$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e", NULL),
+            (366, "juan", "$2y$10$JQ5xvbbP2XH375xY9e.rl.5VUbC.XZidZVR2wyXoPoH5HnwEMua4O", 2),
+            (367, "juanc", "$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu", 2);
+            (382, "webadmin", "$2y$10$WT7i1CFPAxzrjnt2HrNofusXBv5jjrTYjaU6WFxEBZ2krRlI4bGVW", 1);
             
             --
                 -- Indices de la tabla `usuario`
@@ -65,7 +56,7 @@ class UserModel {
                 --
                 ALTER TABLE `usuario`
                 ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`);
-                COMMIT;";
+                COMMIT;';
             $this->pdo->query($sql);
         }
         
