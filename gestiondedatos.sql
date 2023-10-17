@@ -40,13 +40,8 @@ CREATE TABLE `proyecto` (
 
 INSERT INTO `proyecto` (`id_proyecto`, `nombre_proyecto`, `descripcion`, `id_usuario`) VALUES
 (2, 'TPE Web 2', 'Terminar la parte final del tpe', 366),
-(3, 'TPE Prog 2', 'Terminar la parte final del tpe', 366),
-(4, 'TPE TIO', 'Terminar la parte final del tpe', 366),
 (5, 'TPE Ingles', 'Terminar la parte final del tpe', 366),
-(6, 'Página Web', 'Crear una página web de deportes', 367),
-(7, 'eSports', 'Crear una página web de eSports', 367),
-(8, 'Cocina', 'Preparar la comida', 367),
-(9, 'Clima', 'Página web del clima', 367);
+(6, 'Página Web', 'Crear una página web', 367),
 
 -- --------------------------------------------------------
 
@@ -89,6 +84,7 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `contraseña`, `id_rol`) VALUES
 (7, 'mike', '$2y$10$aAFfSiv971VAU5Hnm2IQg.Y2oL3qgz1recQ4rDRTcWxMAAFgcOy7e', NULL),
 (366, 'juan', '$2y$10$JQ5xvbbP2XH375xY9e.rl.5VUbC.XZidZVR2wyXoPoH5HnwEMua4O', 2),
 (367, 'juanc', '$2y$10$tND9QWdaeOoRTlVYoiHgb.RLb4H.wGMkG9frWXghS57wphPLgX8yu', 2);
+(382, 'webadmin', '$2y$10$WT7i1CFPAxzrjnt2HrNofusXBv5jjrTYjaU6WFxEBZ2krRlI4bGVW', 1);
 
 --
 -- Índices para tablas volcadas
