@@ -16,8 +16,6 @@ class LoginView{
         require_once 'templates/login.phtml';
     
         require_once 'templates/footer.phtml';
-        //$this->smarty->assign('error',"$error");
-        //$this->smarty->display('./templates/login.phtml');
     }
     
     
