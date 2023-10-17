@@ -37,12 +37,12 @@ class ProyectController{
     public function showAllProyects($id_rol=""){
         if(!empty($id_rol)){
             if($this->userModel->getRolID($id_rol) === 'admin'){
-                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects(),$id_rol);
+                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects(),$this->userModel->getUsers());
             }else{
-                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects());
+                $this->proyectView->getAllProyectsView($this->proyectModel->getProyects(),$this->userModel->getUsers());
             }
         }else{
-            $this->proyectView->getAllProyectsView($this->proyectModel->getProyects());
+            $this->proyectView->getAllProyectsView($this->proyectModel->getProyects(),$this->userModel->getUsers());
         }
     }
     //Muestra la vista para crear un proyecto
@@ -132,5 +132,9 @@ class ProyectController{
     //Muestra error si no encuntra el action
     public function errorNotFound(){
         $this->errorModel->error404();
+    }
+    //Muestra todos los proyectos de un creador
+    public function proyectsByCreator($userCreator){
+        $this->proyectView->getAllProyectsView($this->proyectModel->getProyectsByID($this->userModel->getUserID($userCreator)),$this->userModel->getUsers());
     }
 }

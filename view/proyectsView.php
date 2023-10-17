@@ -37,8 +37,23 @@ class ProyectsView{
         require_once './templates/footer.phtml';
     }
     //Vista de todos los proyectos que existen
-    public function getAllProyectsView($result){
-        require_once './templates/header.phtml';
+    public function getAllProyectsView($result,$users){
+        require_once './templates/header.phtml'; ?>
+        <form action="proyectByCreator" method="POST">
+            <select name="creator" class="form-select form-select-sm">
+                <option selected>Elegir Creador</option>
+            <?php
+                if (!empty($users)){
+                    foreach ($users as $obj): ?>
+                        <option name="creator" value="<?php echo $obj->nombre ?>"><?php echo $obj->nombre ?></option>;
+            <?php        
+                    endforeach;
+                }
+            ?>
+            </select>
+            <button class="btn btn-outline-primary" type="submit">Select</button>
+        </form>
+        <?php
         require_once './templates/allproyects.phtml';
         ?>
         
@@ -86,7 +101,7 @@ class ProyectsView{
         <?php require_once './templates/footer.phtml';
     }
     //Vista de todos los proyectos de un usuario
-    public function getProyectsView($result,){
+    public function getProyectsView($result){
         require_once './templates/header.phtml';
         require_once './templates/proyects.phtml';
         ?>

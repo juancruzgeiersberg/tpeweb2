@@ -100,5 +100,11 @@ class UserModel {
         $query->execute([$sql]);
         return  $query->fetchAll(PDO::FETCH_OBJ);
     }
+    //Retorna todos los usuarios
+    public function getUsers(){
+        $query = $this->pdo->prepare("SELECT * FROM usuario");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
 
 }

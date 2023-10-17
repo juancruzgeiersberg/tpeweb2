@@ -90,6 +90,11 @@ switch ($params[0]){
     case 'members':
         $proyectController = new ProyectController();
         $proyectController->allMembers($_POST['id_proyect']);
+        //$proyectController->viewProyect($_POST['id_proyect']);
+        break;
+    case 'proyectByCreator':
+        $proyectController = new ProyectController();
+        $proyectController->proyectsByCreator($_POST['creator']);
         break;
     default:
         $proyectController = new ProyectController();
